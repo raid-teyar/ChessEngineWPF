@@ -32,7 +32,6 @@ namespace ChessEngineWPF.Helpers
                     TextBlock.UpdateLayout();
                 }
             });
-
         }
 
         public void Log(string message)
