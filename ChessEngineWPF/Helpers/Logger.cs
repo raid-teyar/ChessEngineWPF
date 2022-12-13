@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -16,7 +17,13 @@ namespace ChessEngineWPF.Helpers
 
         public Logger()
         {
-            TextBlock = new TextBlock();
+            TextBlock = new TextBlock()
+            {
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 12,
+                Margin = new System.Windows.Thickness(10, 10, 10, 10)
+            };
+            
             Timer = new Timer(UpdateTextBlock, null, 0, 1000);
         }
 

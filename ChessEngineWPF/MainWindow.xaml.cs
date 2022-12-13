@@ -1,5 +1,6 @@
 ﻿using ChessEngineWPF.Helpers;
 using ChessEngineWPF.Models;
+using ChessEngineWPF.Models.Pieces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,9 @@ namespace ChessEngineWPF
             
             ChessBoard chessBoard = new ChessBoard();
             chessBoard.AddToGrid(ugChessBoard);
+
+            King king = new King(PieceColor.White, new ChessSquare(0, 0));
+            chessBoard.PlacePiece(king);
 
         }
     }

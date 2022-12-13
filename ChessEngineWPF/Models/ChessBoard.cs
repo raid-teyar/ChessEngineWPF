@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessEngineWPF.Models.Pieces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,5 +45,20 @@ namespace ChessEngineWPF.Models
             }
         }
 
+        public void PlacePiece(Piece piece)
+        {
+            ChessSquare? square = ChessSquares.Find(s => s.Row == piece.Square.Row && s.Column == piece.Square.Column);
+            square.Piece = piece;
+            UpdateBoard();
+        }
+
+        // needs optimizations later
+        public void UpdateBoard()
+        {
+            foreach (ChessSquare square in ChessSquares)
+            {
+                square.UpdateSquare();
+            }
+        }
     }
 }

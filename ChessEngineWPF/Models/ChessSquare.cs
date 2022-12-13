@@ -1,4 +1,5 @@
 ﻿using ChessEngineWPF.Helpers;
+using ChessEngineWPF.Models.Pieces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace ChessEngineWPF.Models
     {
         public int Row { get; set; }
         public int Column { get; set; }
+        public Piece Piece { get; set; }
 
         public ChessSquare(int row, int column)
         {
@@ -25,11 +27,22 @@ namespace ChessEngineWPF.Models
             return string.Format("Row: {0}, Column: {1}", Row, Column);
         }
 
-        // logg
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            ChessSquare source = (ChessSquare) e.Source;
-            Globals.Logger.Log("Clicked square: " + source.ToString());
+            ChessSquare source = (ChessSquare)e.Source;
+            Globals.Logger.Log("Clicked square: " + source.ToString() + " with piece: " + source.Piece?.Name);
+        }
+
+        public void UpdateSquare()
+        {
+            if (Piece != null)
+            {
+                AddChild(new Image{ Source = Piece.ImageSource});
+            }
+            else
+            {
+                Content = null;
+            }
         }
     }
 }
