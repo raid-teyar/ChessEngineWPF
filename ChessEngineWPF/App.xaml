@@ -53,5 +53,18 @@
 
         <SolidColorBrush x:Key="border" Color="White" />
 
+        <BitmapImage x:Key="BlackBishop" UriSource="/Assets/BlackBishop.png" />
+        <BitmapImage x:Key="BlackCastle" UriSource="/Assets/BlackRook.png" />
+        <BitmapImage x:Key="BlackKing" UriSource="/Assets/BlackKing.png" />
+        <BitmapImage x:Key="BlackKnight" UriSource="/Assets/BlackKnight.png" />
+        <BitmapImage x:Key="BlackPawn" UriSource="/Assets/BlackPawn.png" />
+        <BitmapImage x:Key="BlackQueen" UriSource="/Assets/BlackQueen.png" />
+        <BitmapImage x:Key="WhiteBishop" UriSource="/Assets/WhiteBishop.png" />
+        <BitmapImage x:Key="WhiteCastle" UriSource="/Assets/WhiteRook.png" />
+        <BitmapImage x:Key="WhiteKing" UriSource="/Assets/WhiteKing.png" />
+        <BitmapImage x:Key="WhiteKnight" UriSource="/Assets/WhiteKnight.png" />
+        <BitmapImage x:Key="WhitePawn" UriSource="/Assets/WhitePawn.png" />
+        <BitmapImage x:Key="WhiteQueen" UriSource="/Assets/WhiteQueen.png" />
+
     </Application.Resources>
 </Application>
