@@ -1,0 +1,57 @@
+﻿<Application
+    x:Class="ChessEngineWPF.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ChessEngineWPF"
+    StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="lightSquare" TargetType="{x:Type Label}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Label
+                            Name="label"
+                            Background="SandyBrown"
+                            BorderBrush="{DynamicResource border}"
+                            BorderThickness="2" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="label" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Opacity="0.5" Color="SandyBrown" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="darkSquare" TargetType="{x:Type Label}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Label
+                            Name="label"
+                            Background="Brown"
+                            BorderBrush="{DynamicResource border}"
+                            BorderThickness="2" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="label" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Opacity="0.5" Color="Brown" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="border" Color="White" />
+
+    </Application.Resources>
+</Application>
