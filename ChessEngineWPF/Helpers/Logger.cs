@@ -2,24 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace ChessEngineWPF.Helpers
 {
     public class Logger
     {
         public TextBlock TextBlock { get; set; }
+        public Timer Timer { get; set; }
 
         public Logger()
         {
             TextBlock = new TextBlock();
-            ClearEach5Seconds();
+            Timer = new Timer(UpdateTextBlock, null, 0, 1000);
+        }
+
+        private void UpdateTextBlock(object? state)
+        {
+            // run on ui thread
+            TextBlock.Dispatcher.Invoke(() =>
+            {
+                if (TextBlock.Inlines.Count > 10)
+                {
+                    TextBlock.Inlines.Remove(TextBlock.Inlines.FirstInline);
+
+                    TextBlock.UpdateLayout();
+                }
+            });
+
         }
 
         public void Log(string message)
         {
-            TextBlock.Text += message + Environment.NewLine;
+            // add new inline to textblock
+            TextBlock.Dispatcher.Invoke(() =>
+            {
+                TextBlock.Inlines.Add(new Run(message + Environment.NewLine));
+                TextBlock.UpdateLayout();
+            });
         }
 
         public void Log(string message, params object[] args)
@@ -27,30 +50,14 @@ namespace ChessEngineWPF.Helpers
             Log(string.Format(message, args));
         }
 
-
         public void Clear()
         {
             TextBlock.Text = string.Empty;
         }
 
-        public void ClearEach5Seconds()
+        public void ClearLine()
         {
-            Task.Factory.StartNew(() =>
-            {
-                while (true)
-                {
-                    Task.Delay(5000).Wait();
-                     ClearIfNecessary();
-                }
-            });
-        }
-
-        public void ClearIfNecessary()
-        {
-            if (TextBlock.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Length > 10)
-            {
-                Clear();
-            }
+            TextBlock.Text = TextBlock.Text.Substring(0, TextBlock.Text.LastIndexOf(Environment.NewLine));
         }
     }
 
